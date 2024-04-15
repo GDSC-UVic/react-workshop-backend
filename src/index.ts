@@ -10,7 +10,7 @@ import commentRoute from "./routes/comment.route"
 dotenv.config();
 
 const corsOptions = {
-  origin: process.env.ORIGIN_URL || "http://localhost:3006",
+  origin: process.env.ORIGIN_URL || "http://localhost:5173/",
   credentials: true,
   optionsSuccessStatus: 200
 }

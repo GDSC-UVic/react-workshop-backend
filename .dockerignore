@@ -1,0 +1,8 @@
+node_modules
+dist
+./jest.config.js
+./src/__tests__/**/*.test.ts
+*.test.ts
+./src/__tests__/
+./src/db/singleton.ts
+singleton.ts
