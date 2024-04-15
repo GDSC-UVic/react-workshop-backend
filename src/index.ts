@@ -10,7 +10,7 @@ import commentRoute from "./routes/comment.route"
 dotenv.config();
 
 const corsOptions = {
-  origin: process.env.ORIGIN_URL || "http://localhost:5173/",
+  origin: process.env.ORIGIN_URL || "http://localhost:5173",
   credentials: true,
   optionsSuccessStatus: 200
 }
@@ -22,7 +22,7 @@ app.use(morgan("[:date] :method :url :status :res[content-length] - :remote-addr
 app.set("trust proxy", "loopback, linklocal, uniquelocal")
 app.use(cors(corsOptions))
 app.use(helmet())
-const port = process.env.PORT || 3000;
+const port = Number(process.env.PORT) || 3000;
 
 app.use("/api/v1", commentRoute)
 
@@ -30,6 +30,6 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
 });
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+app.listen(port, "0.0.0.0", function () {
+  console.log(`[server]: Server is running at http://0.0.0.0:${port}`);
 });
