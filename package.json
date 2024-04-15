@@ -34,10 +34,10 @@
     "@types/helmet": "^4.0.0",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/morgan": "^1.9.9",
-    "@types/node": "^20.12.7"
+    "@types/node": "^20.12.7",
+    "prisma": "^5.12.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0",
-    "prisma": "^5.12.1"
+    "nodemon": "^3.1.0"
   }
 }
