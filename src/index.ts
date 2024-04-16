@@ -9,6 +9,9 @@ import swaggerUi from "swagger-ui-express";
 
 import commentRoute from "./routes/comment.route"
 
+const CSS_URL =
+  "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+
 dotenv.config();
 
 const corsOptions = {
@@ -44,7 +47,8 @@ app.use(cors(corsOptions))
 app.use(helmet())
 const port = Number(process.env.PORT) || 3000;
 
-app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api/v1/docs", swaggerUi.serve)
+app.get("/api/v1/docs", swaggerUi.setup(swaggerSpec, { customCss: CSS_URL }))
 
 app.use("/api/v1", commentRoute)
 
