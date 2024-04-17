@@ -9,11 +9,8 @@ import swaggerUi from "swagger-ui-express";
 
 import commentRoute from "./routes/comment.route";
 
-const CSS_URL =[
-  "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.6.3/swagger-ui.min.css",
-  "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.6.3/swagger-ui.js",
-  'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.6.3/swagger-ui-standalone-preset.min.css'
-]
+const CSS_URL =
+  "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.3.0/swagger-ui.min.css"
 
 
 dotenv.config();
@@ -59,7 +56,11 @@ const port = Number(process.env.PORT) || 3000;
 app.use(
   "/api/v1/docs",
   swaggerUi.serve,
-  swaggerUi.setup(swaggerSpec)
+  swaggerUi.setup(swaggerSpec,{
+    customCss:
+      '.swagger-ui .opblock .opblock-summary-path-description-wrapper { align-items: center; display: flex; flex-wrap: wrap; gap: 0 10px; padding: 0 10px; width: 100%; }',
+    customCssUrl: CSS_URL,
+  })
 );
 
 app.use("/api/v1", commentRoute);

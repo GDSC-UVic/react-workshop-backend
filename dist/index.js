@@ -12,11 +12,7 @@ const helmet_1 = __importDefault(require("helmet"));
 const swagger_jsdoc_1 = __importDefault(require("swagger-jsdoc"));
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const comment_route_1 = __importDefault(require("./routes/comment.route"));
-const CSS_URL = [
-    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.6.3/swagger-ui.min.css",
-    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.6.3/swagger-ui.js",
-    'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.6.3/swagger-ui-standalone-preset.min.css'
-];
+const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.3.0/swagger-ui.min.css";
 dotenv_1.default.config();
 const corsOptions = {
     origin: process.env.ORIGIN_URL || "http://localhost:5173",
@@ -48,7 +44,10 @@ app.set("trust proxy", "loopback, linklocal, uniquelocal");
 app.use((0, cors_1.default)(corsOptions));
 app.use((0, helmet_1.default)());
 const port = Number(process.env.PORT) || 3000;
-app.use("/api/v1/docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerSpec));
+app.use("/api/v1/docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerSpec, {
+    customCss: '.swagger-ui .opblock .opblock-summary-path-description-wrapper { align-items: center; display: flex; flex-wrap: wrap; gap: 0 10px; padding: 0 10px; width: 100%; }',
+    customCssUrl: CSS_URL,
+}));
 app.use("/api/v1", comment_route_1.default);
 app.get("/", (req, res) => {
     res.send("Express + TypeScript Server");
