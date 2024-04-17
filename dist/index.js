@@ -34,6 +34,7 @@ const options = {
         `${__dirname}/routes/comment.route.ts`,
         "./dist/routes/comment.route.js",
     ],
+    customCssUrl: CSS_URL,
 };
 const swaggerSpec = (0, swagger_jsdoc_1.default)(options);
 app.use(express_1.default.json());
@@ -43,7 +44,7 @@ app.set("trust proxy", "loopback, linklocal, uniquelocal");
 app.use((0, cors_1.default)(corsOptions));
 app.use((0, helmet_1.default)());
 const port = Number(process.env.PORT) || 3000;
-app.use("/api/v1/docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerSpec, { customCssUrl: CSS_URL }));
+app.use("/api/v1/docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerSpec));
 app.use("/api/v1", comment_route_1.default);
 app.get("/", (req, res) => {
     res.send("Express + TypeScript Server");

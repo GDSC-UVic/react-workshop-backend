@@ -36,6 +36,7 @@ const options = {
     `${__dirname}/routes/comment.route.ts`,
     "./dist/routes/comment.route.js",
   ],
+  customCssUrl: CSS_URL,
 };
 const swaggerSpec = swaggerJSDoc(options);
 
@@ -54,7 +55,7 @@ const port = Number(process.env.PORT) || 3000;
 app.use(
   "/api/v1/docs",
   swaggerUi.serve,
-  swaggerUi.setup(swaggerSpec, { customCssUrl: CSS_URL})
+  swaggerUi.setup(swaggerSpec)
 );
 
 app.use("/api/v1", commentRoute);
