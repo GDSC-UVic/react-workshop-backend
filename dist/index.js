@@ -17,7 +17,7 @@ dotenv_1.default.config();
 const corsOptions = {
     origin: process.env.ORIGIN_URL || "http://localhost:5173",
     credentials: true,
-    optionsSuccessStatus: 200
+    optionsSuccessStatus: 200,
 };
 const app = (0, express_1.default)();
 const options = {
@@ -43,7 +43,7 @@ app.set("trust proxy", "loopback, linklocal, uniquelocal");
 app.use((0, cors_1.default)(corsOptions));
 app.use((0, helmet_1.default)());
 const port = Number(process.env.PORT) || 3000;
-app.use("/api/v1/docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerSpec, { customCss: CSS_URL }));
+app.use("/api/v1/docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerSpec, { customCssUrl: CSS_URL }));
 app.use("/api/v1", comment_route_1.default);
 app.get("/", (req, res) => {
     res.send("Express + TypeScript Server");
